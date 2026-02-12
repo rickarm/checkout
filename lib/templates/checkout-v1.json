@@ -1,0 +1,54 @@
+{
+  "id": "checkout-v1",
+  "name": "Evening Checkout",
+  "description": "End-of-day reflection on presence, joy, values, pride, and letting go",
+  "questions": [
+    {
+      "id": "presence",
+      "order": 1,
+      "title": "How present do you feel right now?",
+      "prompt": "Rate your sense of presence on a scale of 1-10.",
+      "example": null,
+      "required": true,
+      "type": "number",
+      "min": 1,
+      "max": 10
+    },
+    {
+      "id": "joy",
+      "order": 2,
+      "title": "Your joy-moment",
+      "prompt": "Give one specific moment of joy from today.",
+      "example": "e.g. first sip of coffee, funny text, smell from walk",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "id": "values",
+      "order": 3,
+      "title": "Think of your values",
+      "prompt": "Think of an action you did today that aligns with any of them.",
+      "example": "e.g. kindness: bought my partner a coffee; honesty & respect: delivered clear feedback to X with care",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "id": "pride",
+      "order": 4,
+      "title": "Something I'm proud of",
+      "prompt": "What's one thing you're proud of from today?",
+      "example": null,
+      "required": false,
+      "type": "text"
+    },
+    {
+      "id": "letgo",
+      "order": 5,
+      "title": "What do you decide to let go of?",
+      "prompt": "Release something that no longer serves you.",
+      "example": "e.g. anger with my investors, fear of failure",
+      "required": false,
+      "type": "text"
+    }
+  ]
+}

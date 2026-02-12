@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+~/.checkout/
+/journals/
+coverage/
+.env
+*.log
