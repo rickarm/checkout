@@ -116,7 +116,7 @@ Example: `~/journals/2026/02/2026-02-12-checkout-v1.md`
 
 ## checkout list
 
-View all journal entries, organized by month.
+View all journal entries, organized by month. Automatically generates a browsable `index.md` file.
 
 ### Usage
 
@@ -145,6 +145,9 @@ Journal (15 entries)
   30  2026-01-30-checkout-v1.md
   ...
 
+Generating index.md...
+✓ Index updated: /Users/you/journals/index.md
+
 2025 — December
 
   31  2025-12-31-checkout-v1.md
@@ -156,6 +159,49 @@ Journal (15 entries)
 - **Grouped:** By year and month
 - **All templates:** Shows all `.md` files in journal directory
 - **Empty:** Shows "No entries found" if journal is empty
+- **Index generation:** Automatically creates/updates `index.md` after listing
+
+### Generated Index File
+
+**Location:** `{journalDir}/index.md`
+
+**Format:**
+```markdown
+# Journal Index
+
+*5 entries*
+
+---
+
+## 2026
+
+### February
+
+- **12** — [[./2026/02/2026-02-12-checkout-v1.md]]
+- **10** — [[./2026/02/2026-02-10-checkout-v1.md]]
+
+### January
+
+- **15** — [[./2026/01/2026-01-15-checkout-v1.md]]
+
+---
+
+*Generated: 2026-02-12T23:45:56.673Z*
+```
+
+**Features:**
+- **Wiki-style links:** Compatible with Obsidian, Foam, Logseq, Notion
+- **Clickable navigation:** Open entries directly from index
+- **Organized structure:** Year → Month → Day (descending)
+- **Entry count:** Shows total number of entries
+- **Timestamp:** Shows when index was generated
+- **Auto-updated:** Regenerated every time you run `checkout list`
+
+**Use with tools:**
+- **Obsidian:** Open `~/journals` as vault, index links work natively
+- **VS Code + Foam:** Open journal folder, cmd+click to follow links
+- **GitHub/GitLab:** Push journals to repo, index becomes browsable table of contents
+- **Any markdown viewer:** Links are standard relative paths
 
 ### Use Cases
 
@@ -163,6 +209,8 @@ Journal (15 entries)
 - Check if you've journaled today
 - Browse entries by date
 - Verify imports completed successfully
+- Share journal index with others (links work in any markdown tool)
+- Create a browsable backup
 
 ---
 
