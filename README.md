@@ -1,5 +1,10 @@
 # Checkout Journal 🌙
 
+[![npm version](https://img.shields.io/npm/v/@rickarm/checkout.svg)](https://www.npmjs.com/package/@rickarm/checkout)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/node/v/@rickarm/checkout)](https://nodejs.org)
+[![Tests](https://img.shields.io/badge/tests-26%20passing-brightgreen.svg)](https://github.com/rickarm/checkout)
+
 A lightweight CLI journaling app for 5-minute evening reflection. End your day with presence, gratitude, and intention.
 
 ## What is Checkout?
@@ -383,18 +388,38 @@ The questions are designed to:
 
 ## Contributing
 
-This is a personal project, but suggestions and bug reports are welcome!
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+- 🐛 [Report bugs](https://github.com/rickarm/checkout/issues/new?template=bug_report.md)
+- 💡 [Request features](https://github.com/rickarm/checkout/issues/new?template=feature_request.md)
+- 🔀 [Submit pull requests](https://github.com/rickarm/checkout/pulls)
+
+## Support
+
+- 📖 [Documentation](docs/)
+- 💬 [Discussions](https://github.com/rickarm/checkout/discussions)
+- 🐛 [Issue Tracker](https://github.com/rickarm/checkout/issues)
 
 ## License
 
-MIT
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Author
 
-Rick Armbrust
+**Rick Armbrust**
 
-Built with [Claude Code](https://claude.ai/claude-code)
+- GitHub: [@rickarm](https://github.com/rickarm)
+
+Built with [Claude Code](https://claude.ai/claude-code) 🤖
+
+## Acknowledgments
+
+- Inspired by the need for simple, consistent reflection practices
+- Built for those who value presence over productivity
+- Community feedback and contributions
 
 ---
 
 _"The days are long, but the years are short. Checkout helps you savor both."_
+
+**Star this repo if Checkout helps you reflect! ⭐**

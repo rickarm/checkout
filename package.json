@@ -14,10 +14,29 @@
   "keywords": [
     "journal",
     "reflection",
-    "mindfulness"
+    "mindfulness",
+    "cli",
+    "journaling",
+    "meditation",
+    "wellness",
+    "gratitude",
+    "presence",
+    "markdown"
   ],
   "author": "Rick Armbrust",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rickarm/checkout.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rickarm/checkout/issues"
+  },
+  "homepage": "https://github.com/rickarm/checkout#readme",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^11.1.0",

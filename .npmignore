@@ -1,0 +1,36 @@
+# Test files
+tests/
+*.test.js
+coverage/
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation (keep only README in npm package)
+docs/
+
+# Git files
+.git/
+.gitignore
+
+# CI/CD
+.github/
+
+# Examples and demos
+examples/
+demos/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+tmp/
+temp/
