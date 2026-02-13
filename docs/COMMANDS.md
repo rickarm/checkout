@@ -5,6 +5,7 @@ Complete reference for all Checkout Journal commands.
 ## Table of Contents
 
 - [checkout (default)](#checkout-default)
+- [checkout test](#checkout-test)
 - [checkout list](#checkout-list)
 - [checkout import](#checkout-import)
 - [checkout validate](#checkout-validate)
@@ -111,6 +112,134 @@ Example: `~/journals/2026/02/2026-02-12-checkout-v1.md`
 - **Long answers:** Type naturally; word wrap is handled
 - **Fix mistakes:** Currently must complete entry and edit file manually
 - **Multiple entries per day:** Filename includes date only, so one entry per day per template
+- **Try it first:** Use `checkout test` for a practice run without saving
+
+---
+
+## checkout test
+
+Practice run - create an entry without saving to file.
+
+### Usage
+
+```bash
+checkout test
+```
+
+### Purpose
+
+Perfect for:
+- **First-time users** - Learn the flow before saving real entries
+- **Testing installation** - Verify checkout works correctly
+- **Trying the process** - Experience the journaling flow without commitment
+- **Exploring questions** - See all five reflection prompts
+- **Training others** - Demonstrate the app without creating files
+
+### Flow
+
+Identical to `checkout` (default command):
+
+1. **Breathing Exercise** (8 seconds)
+2. **Five Questions** (in order)
+3. **Entry Preview** (formatted markdown)
+4. **Exit** - Entry is NOT saved
+
+### Output
+
+**Session example:**
+```
+🧪 Test Mode
+
+Practice run - entry will not be saved
+
+🌙 Evening Checkout
+
+Take a moment to breathe.
+4 seconds in... 4 seconds out.
+
+[... continues through all questions ...]
+
+==================================================
+Here's your test entry:
+
+## How present do you feel right now?
+8
+
+## Your joy-moment
+Testing the checkout app
+
+[... rest of entry ...]
+
+==================================================
+
+ℹ Test complete - entry was not saved
+Run "checkout" without "test" to save entries
+```
+
+### What Happens
+
+- ✅ Breathing exercise runs
+- ✅ All questions prompt
+- ✅ Input is validated
+- ✅ Entry is previewed
+- ❌ **File is NOT created**
+- ❌ No save confirmation prompt
+
+### Validation
+
+Entry is still validated:
+- Presence rating must be 1-10
+- Required questions must be answered
+- Shows validation errors if any
+
+But unlike normal checkout, validation errors don't prevent completion - they're just shown as feedback.
+
+### Use Cases
+
+**Teaching/Demo:**
+```bash
+# Show someone the process
+checkout test
+```
+
+**Quick test after install:**
+```bash
+npm install
+npm link
+checkout test  # Verify it works
+```
+
+**Exploring the app:**
+```bash
+# See what questions are asked
+checkout test
+```
+
+**Development/Testing:**
+```bash
+# Test changes without polluting journal
+checkout test
+```
+
+### Comparison
+
+| Aspect | `checkout` | `checkout test` |
+|--------|-----------|-----------------|
+| Breathing exercise | ✅ Yes | ✅ Yes |
+| Five questions | ✅ Yes | ✅ Yes |
+| Validation | ✅ Yes | ✅ Yes |
+| Entry preview | ✅ Yes | ✅ Yes |
+| Save confirmation | ✅ Yes | ❌ No |
+| **Creates file** | ✅ **Yes** | ❌ **No** |
+| **Updates index** | ✅ Yes | ❌ No |
+
+### Notes
+
+- Test mode is clearly indicated at the start
+- Entry is fully validated (same rules as normal)
+- Perfect for onboarding new users
+- No config needed - works immediately after install
+- Can be run multiple times without side effects
 
 ---
 
@@ -618,6 +747,7 @@ grep -h "## Your joy-moment" ~/journals/**/*.md -A 1 | \
 | Command | Purpose | Example |
 |---------|---------|---------|
 | `checkout` | Create entry | `checkout` |
+| `checkout test` | Practice (no save) | `checkout test` |
 | `checkout list` | View entries | `checkout list` |
 | `checkout import <path>` | Import file(s) | `checkout import ~/backup.md` |
 | `checkout validate` | Check integrity | `checkout validate` |

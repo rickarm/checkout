@@ -107,6 +107,18 @@ Start a new journal entry (default command).
 checkout
 ```
 
+### `checkout test`
+Practice run - create an entry without saving to file. Perfect for:
+- First-time users learning the flow
+- Trying out the journaling process
+- Testing after installation
+
+```bash
+checkout test
+```
+
+**Note:** Entry is validated but not saved. Use `checkout` (without `test`) to save entries.
+
 ### `checkout list`
 View all journal entries, grouped by month. Automatically generates `index.md` with wiki-style links.
 
