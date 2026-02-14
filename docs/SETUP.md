@@ -17,18 +17,29 @@ npm --version   # Should be v6.0.0 or higher
 
 ## Installation
 
-### 1. Get the Code
+### Option 1: Install from npm (Recommended)
+
+The easiest way to install:
 
 ```bash
-# If you have the source code
-cd checkout
+npm install -g @rickarm/checkout
+```
 
-# Or clone from repository
-git clone <repository-url>
+This installs the `checkout` command globally. Skip to [Verify Installation](#4-verify-installation).
+
+### Option 2: Install from Source
+
+For development or contributing:
+
+#### 1. Get the Code
+
+```bash
+# Clone from repository
+git clone https://github.com/rickarm/checkout.git
 cd checkout
 ```
 
-### 2. Install Dependencies
+#### 2. Install Dependencies
 
 ```bash
 npm install
@@ -41,7 +52,7 @@ This installs:
 - `jest` - Testing framework
 - `eslint` - Code linting
 
-### 3. Link Globally
+#### 3. Link Globally
 
 ```bash
 npm link

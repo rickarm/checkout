@@ -37,16 +37,27 @@ Each session begins with a brief breathing exercise to help you transition into 
 - Node.js v14 or higher
 - npm v6 or higher
 
-### Install
+### Install from npm (Recommended)
 
 ```bash
-# Clone or download this repository
+npm install -g @rickarm/checkout
+```
+
+That's it! The `checkout` command is now available globally.
+
+### Install from Source
+
+Alternatively, install from source:
+
+```bash
+# Clone the repository
+git clone https://github.com/rickarm/checkout.git
 cd checkout
 
 # Install dependencies
 npm install
 
-# Link globally (makes `checkout` command available)
+# Link globally
 npm link
 ```
 
