@@ -84,10 +84,10 @@ Morning coffee with my partner
 
 ==================================================
 
-? Save to /Users/you/journals/2026/02/2026-02-12-checkout-v1.md? (Y/n)
+? Save to /Users/you/kb/journal/2026/02/2026-02-12-checkout-v1.md? (Y/n)
 
 ✓ Entry saved
-✓ Path: /Users/you/journals/2026/02/2026-02-12-checkout-v1.md
+✓ Path: /Users/you/kb/journal/2026/02/2026-02-12-checkout-v1.md
 
 Done! 🌙
 ```
@@ -104,7 +104,7 @@ Format: `YYYY-MM-DD-checkout-v1.md`
 
 Location: `{journalDir}/YYYY/MM/YYYY-MM-DD-checkout-v1.md`
 
-Example: `~/journals/2026/02/2026-02-12-checkout-v1.md`
+Example: `~/kb/journal/2026/02/2026-02-12-checkout-v1.md`
 
 ### Tips
 
@@ -275,7 +275,7 @@ Journal (15 entries)
   ...
 
 Generating index.md...
-✓ Index updated: /Users/you/journals/index.md
+✓ Index updated: /Users/you/kb/journal/index.md
 
 2025 — December
 
@@ -327,7 +327,7 @@ Generating index.md...
 - **Auto-updated:** Regenerated every time you run `checkout list`
 
 **Use with tools:**
-- **Obsidian:** Open `~/journals` as vault, index links work natively
+- **Obsidian:** Open `~/kb/journal` as vault, index links work natively
 - **VS Code + Foam:** Open journal folder, cmd+click to follow links
 - **GitHub/GitLab:** Push journals to repo, index becomes browsable table of contents
 - **Any markdown viewer:** Links are standard relative paths
@@ -371,7 +371,7 @@ checkout import ~/Downloads/2026-02-10-checkout-v1.md
 Importing file: /Users/you/Downloads/2026-02-10-checkout-v1.md
 
 ✓ File imported successfully
-✓ Location: /Users/you/journals/2026/02/2026-02-10-checkout-v1.md
+✓ Location: /Users/you/kb/journal/2026/02/2026-02-10-checkout-v1.md
 ```
 
 **Requirements:**
@@ -467,7 +467,7 @@ checkout validate
 ```
 🔍 Validate Journal Entries
 
-Checking: /Users/you/journals
+Checking: /Users/you/kb/journal
 
 Validation Summary:
 
@@ -484,7 +484,7 @@ Validation Summary:
 ```
 🔍 Validate Journal Entries
 
-Checking: /Users/you/journals
+Checking: /Users/you/kb/journal
 
 Validation Summary:
 
@@ -579,7 +579,7 @@ checkout config
 Current Configuration
 
 {
-  "journalDir": "/Users/you/journals",
+  "journalDir": "/Users/you/kb/journal",
   "githubRepo": null,
   "githubUsername": null,
   "autoSync": false,
@@ -595,7 +595,7 @@ Current Configuration
 
 | Field | Description | Default |
 |-------|-------------|---------|
-| `journalDir` | Where journal entries are stored | `~/journals` |
+| `journalDir` | Where journal entries are stored | `~/kb/journal` |
 | `githubRepo` | GitHub repository for sync (future) | `null` |
 | `githubUsername` | GitHub username (future) | `null` |
 | `autoSync` | Auto-sync to remote (future) | `false` |
@@ -615,13 +615,13 @@ nano ~/.checkout/config.json
 Change journal directory:
 ```json
 {
-  "journalDir": "/new/path/to/journals"
+  "journalDir": "/new/path/to/journal"
 }
 ```
 
 **Future option:** `--set` flag (not yet implemented)
 ```bash
-checkout config --set journalDir ~/new-journals
+checkout config --set journalDir ~/kb/journal
 ```
 
 ### Config Location
@@ -716,27 +716,27 @@ alias journal='checkout'
 
 ```bash
 # Quick backup
-tar -czf journal-backup-$(date +%Y%m%d).tar.gz ~/journals
+tar -czf journal-backup-$(date +%Y%m%d).tar.gz ~/kb/journal
 
 # Sync to Dropbox
-rsync -av ~/journals ~/Dropbox/journal-backup/
+rsync -av ~/kb/journal ~/Dropbox/journal-backup/
 ```
 
 ### Search Entries
 
 ```bash
 # Find entries mentioning "coffee"
-grep -r "coffee" ~/journals/
+grep -r "coffee" ~/kb/journal/
 
 # Count total entries
-find ~/journals -name "*.md" | wc -l
+find ~/kb/journal -name "*.md" | wc -l
 ```
 
 ### Analyze Your Journal
 
 ```bash
 # Most common words in joy moments
-grep -h "## Your joy-moment" ~/journals/**/*.md -A 1 | \
+grep -h "## Your joy-moment" ~/kb/journal/**/*.md -A 1 | \
   grep -v "^##" | tr ' ' '\n' | sort | uniq -c | sort -rn | head -20
 ```
 

@@ -103,15 +103,15 @@ On first run, you'll see:
 
 No config found. Let me set you up.
 
-? Where should I store journal entries? (~/journals)
+? Where should I store journal entries? (~/kb/journal)
 ```
 
 ### Choose Journal Directory
 
 **Options:**
 
-1. **Default (`~/journals`)** - Press Enter
-   - Creates `journals` folder in your home directory
+1. **Default (`~/kb/journal`)** - Press Enter
+   - Creates `kb/journal` folder in your home directory
    - Simple and recommended for most users
 
 2. **Custom path** - Type a different path
@@ -131,7 +131,7 @@ After configuration:
 1. **Config file:** `~/.checkout/config.json`
    ```json
    {
-     "journalDir": "/Users/you/journals",
+     "journalDir": "/Users/you/kb/journal",
      "githubRepo": null,
      "githubUsername": null,
      "autoSync": false,
@@ -145,7 +145,7 @@ After configuration:
 
 2. **Journal directory:** Will be created on first entry save
    ```
-   ~/journals/          (or your custom path)
+   ~/kb/journal/        (or your custom path)
    ```
 
 ## Reconfiguration
@@ -161,7 +161,7 @@ nano ~/.checkout/config.json
 Change `journalDir` value:
 ```json
 {
-  "journalDir": "/new/path/to/journals",
+  "journalDir": "/new/path/to/journal",
   ...
 }
 ```
@@ -182,7 +182,7 @@ This will prompt you to configure again.
 rm ~/.checkout/config.json
 
 # Optionally remove journal entries
-rm -rf ~/journals  # Be careful!
+rm -rf ~/kb/journal  # Be careful!
 
 # Run checkout to reconfigure
 checkout
@@ -206,7 +206,7 @@ rm ~/.checkout/config.json
 ### 3. Remove Journal Entries (Optional)
 
 ```bash
-rm -rf ~/journals  # Or your custom journal directory
+rm -rf ~/kb/journal  # Or your custom journal directory
 ```
 
 ### 4. Remove Source Code (Optional)
@@ -289,7 +289,7 @@ checkout
 
 Either recreate the directory:
 ```bash
-mkdir -p ~/journals
+mkdir -p ~/kb/journal
 ```
 
 Or update config to new location:
@@ -374,11 +374,11 @@ Point journal directory to a synced folder:
 
 ```bash
 # Dropbox example
-ln -s ~/Dropbox/journals ~/journals
+ln -s ~/Dropbox/journals ~/kb/journal
 
 # Update config
 nano ~/.checkout/config.json
-# Set journalDir to ~/Dropbox/journals
+# Set journalDir to the synced folder
 ```
 
 ### Git Integration (Manual)
@@ -386,7 +386,7 @@ nano ~/.checkout/config.json
 Initialize git in your journal directory:
 
 ```bash
-cd ~/journals
+cd ~/kb/journal
 git init
 echo ".DS_Store" > .gitignore
 git add .

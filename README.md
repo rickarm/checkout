@@ -23,7 +23,7 @@ Each session begins with a brief breathing exercise to help you transition into 
 
 - ✨ **Guided prompts** - Five thoughtful questions for evening reflection
 - 🫁 **Breathing exercise** - 8-second pause to center yourself
-- 📁 **Organized storage** - Entries saved as markdown in `~/journals/YYYY/MM/`
+- 📁 **Organized storage** - Entries saved as markdown in `~/kb/journal/YYYY/MM/`
 - 📋 **List view** - Browse all entries grouped by month
 - 🔗 **Browsable index** - Auto-generated `index.md` with wiki-style links
 - 📥 **Import** - Bring in existing markdown journal entries
@@ -73,7 +73,7 @@ You should see the help menu with available commands.
 
 ### First Run
 
-On first run, Checkout will ask where to store your journal entries (default: `~/journals`):
+On first run, Checkout will ask where to store your journal entries (default: `~/kb/journal`):
 
 ```bash
 checkout
@@ -81,7 +81,7 @@ checkout
 # Output:
 # 👋 Welcome to Checkout
 # No config found. Let me set you up.
-# ? Where should I store journal entries? (~/journals)
+# ? Where should I store journal entries? (~/kb/journal)
 ```
 
 ### Create Your First Entry
@@ -144,7 +144,7 @@ checkout list
 ```
 
 **Generated index.md:**
-- Created at `~/journals/index.md`
+- Created at `~/kb/journal/index.md`
 - Contains wiki-style links: `[[./2026/02/2026-02-12-checkout-v1.md]]`
 - Organized by year and month (most recent first)
 - Includes entry count and generation timestamp
@@ -222,7 +222,7 @@ Example: `2026-02-12-checkout-v1.md`
 ### Directory Structure
 
 ```
-~/journals/
+~/kb/journal/
 ├── index.md                          # Auto-generated browsable index
 ├── 2026/
 │   ├── 01/
@@ -282,7 +282,7 @@ Config file location: `~/.checkout/config.json`
 
 ```json
 {
-  "journalDir": "/Users/you/journals",
+  "journalDir": "/Users/you/kb/journal",
   "githubRepo": null,
   "githubUsername": null,
   "autoSync": false,
@@ -300,7 +300,7 @@ Edit `~/.checkout/config.json` and update `journalDir`:
 
 ```json
 {
-  "journalDir": "/path/to/your/journals",
+  "journalDir": "/path/to/your/journal",
   ...
 }
 ```
@@ -315,10 +315,10 @@ To access your journal entries from another project (e.g., for analysis or visua
 
 ```bash
 cd /path/to/your/other-project
-ln -s ~/journals ./journals
+ln -s ~/kb/journal ./journal
 ```
 
-Now your other project can read entries via `./journals/`.
+Now your other project can read entries via `./journal/`.
 
 **Benefits:**
 - Single source of truth (no sync issues)
