@@ -1,7 +1,7 @@
 {
   "id": "checkout-v1",
   "name": "Evening Checkout",
-  "description": "End-of-day reflection on presence, joy, values, pride, and letting go",
+  "description": "End-of-day reflection on presence, joy, values, and letting go",
   "questions": [
     {
       "id": "presence",
@@ -33,17 +33,8 @@
       "type": "text"
     },
     {
-      "id": "pride",
-      "order": 4,
-      "title": "Something I'm proud of",
-      "prompt": "What's one thing you're proud of from today?",
-      "example": null,
-      "required": false,
-      "type": "text"
-    },
-    {
       "id": "letgo",
-      "order": 5,
+      "order": 4,
       "title": "What do you decide to let go of?",
       "prompt": "Release something that no longer serves you.",
       "example": "e.g. anger with my investors, fear of failure",
