@@ -27,8 +27,8 @@
       "id": "values",
       "order": 3,
       "title": "Think of your values",
-      "prompt": "Think of an action you did today that aligns with any of them.",
-      "example": "e.g. kindness: bought my partner a coffee; honesty & respect: delivered clear feedback to X with care",
+      "prompt": "Your values: Curiosity, Influence, Compassion, Determination, Authenticity.\nThink of an action you did today that aligns with any of them.",
+      "example": "e.g. Compassion: listened without fixing when Sheila vented; Curiosity: went deep on a new idea with a client",
       "required": true,
       "type": "text"
     },
