@@ -9,6 +9,7 @@
   "scripts": {
     "test": "jest --passWithNoTests",
     "dev": "node bin/checkout.js",
+    "serve": "node bin/checkout.js serve",
     "lint": "eslint lib/ bin/ || true"
   },
   "keywords": [
@@ -40,6 +41,9 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^11.1.0",
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "inquirer": "^8.2.5"
   },
   "devDependencies": {

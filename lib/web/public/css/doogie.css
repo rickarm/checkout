@@ -1,0 +1,563 @@
+/* ─── Doogie Howser Terminal Theme ─────────────────────────────
+   Inspired by the iconic blue DOS diary screen from Doogie Howser, M.D.
+   Blue background, monospace font, typewriter text, blinking cursor.
+   ──────────────────────────────────────────────────────────────── */
+
+/* ─── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #111;
+  font-family: 'IBM Plex Mono', 'Courier New', 'Courier', monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+/* ─── Desktop: dark surround ───────────────────────────────── */
+.dos-desktop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  padding: 20px;
+}
+
+/* ─── The DOS Screen ───────────────────────────────────────── */
+.dos-container {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  height: 100%;
+  max-height: 900px;
+  background: #0000AA;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 0 60px rgba(0, 0, 170, 0.4),
+    0 0 120px rgba(0, 0, 170, 0.2),
+    inset 0 0 80px rgba(0, 0, 0, 0.15);
+}
+
+/* ─── CRT Scanlines ────────────────────────────────────────── */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.12) 0px,
+    rgba(0, 0, 0, 0.12) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ─── Screen Header ────────────────────────────────────────── */
+.screen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+.header-title {
+  color: #FFB000;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 13px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.nav-link:hover, .nav-link:focus {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.nav-sep {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 13px;
+}
+
+/* ─── Screen Body ──────────────────────────────────────────── */
+.screen-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 20px;
+  z-index: 5;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Scrollbar styling */
+.screen-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.screen-body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.screen-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 176, 0, 0.3);
+  border-radius: 3px;
+}
+
+/* ─── Colors ───────────────────────────────────────────────── */
+.amber {
+  color: #FFB000;
+}
+
+.dim {
+  color: #AAAAAA;
+}
+
+.dim-more {
+  color: #777777;
+  font-style: italic;
+}
+
+.success {
+  color: #55FF55;
+}
+
+.error {
+  color: #FF5555;
+}
+
+/* ─── Blinking Cursor ──────────────────────────────────────── */
+.cursor {
+  color: #FFB000;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ─── Typewriter blocks ────────────────────────────────────── */
+.typewriter-block {
+  min-height: 2em;
+}
+
+.prompt-text {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* ─── Breathing Exercise ───────────────────────────────────── */
+.step-breathing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.breathing-phase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.breathing-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.breath-circle {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #FFB000;
+  border-radius: 50%;
+  transition: transform 4s ease-in-out;
+}
+
+.breath-circle.inhale {
+  transform: scale(1.8);
+}
+
+.breath-circle.exhale {
+  transform: scale(1);
+}
+
+.breath-label {
+  font-size: 18px;
+}
+
+.countdown {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.ready-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ─── Question Step ────────────────────────────────────────── */
+.step-question {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.question-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  color: #555;
+  font-size: 12px;
+}
+
+.dot.completed {
+  color: #55FF55;
+}
+
+.dot.active {
+  color: #FFB000;
+}
+
+.question-title p {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.question-prompt {
+  margin-top: 4px;
+}
+
+.question-example {
+  margin-top: 2px;
+}
+
+/* ─── Terminal Input ───────────────────────────────────────── */
+.terminal-form {
+  margin-top: 12px;
+}
+
+.terminal-input-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.input-prompt {
+  flex-shrink: 0;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  outline: none;
+  caret-color: transparent;
+  padding: 0;
+  min-width: 0;
+}
+
+.terminal-input::placeholder {
+  color: transparent;
+}
+
+.input-cursor {
+  color: #FFB000;
+  animation: blink 1s step-end infinite;
+  flex-shrink: 0;
+}
+
+.form-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+/* ─── Buttons ──────────────────────────────────────────────── */
+.terminal-btn {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid rgba(255, 176, 0, 0.5);
+  color: #FFB000;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 14px;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.terminal-btn:hover, .terminal-btn:focus {
+  background: rgba(255, 176, 0, 0.1);
+  border-color: #FFB000;
+  outline: none;
+}
+
+.terminal-btn.dim {
+  color: #AAAAAA;
+  border-color: rgba(170, 170, 170, 0.3);
+}
+
+.terminal-btn.dim:hover {
+  background: rgba(170, 170, 170, 0.1);
+  border-color: #AAAAAA;
+}
+
+.terminal-btn-inline {
+  color: #FFB000;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.terminal-btn-inline:hover {
+  text-decoration: underline;
+}
+
+/* ─── Terminal Error ───────────────────────────────────────── */
+.terminal-error {
+  margin: 8px 0;
+  padding: 8px 0;
+}
+
+/* ─── Review Step ──────────────────────────────────────────── */
+.step-review {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.review-separator {
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+.review-question {
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.review-answer {
+  margin-bottom: 8px;
+}
+
+.review-actions {
+  margin-top: 12px;
+}
+
+/* ─── Saved Step ───────────────────────────────────────────── */
+.step-saved {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+}
+
+.saved-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ─── History Page ─────────────────────────────────────────── */
+.page-history {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.history-separator {
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+.history-year p {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.history-month {
+  margin-bottom: 4px;
+}
+
+.history-entry {
+  line-height: 1.8;
+}
+
+.entry-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  display: block;
+  transition: background 0.15s;
+  padding: 2px 4px;
+  margin: 0 -4px;
+}
+
+.entry-link:hover {
+  background: rgba(255, 176, 0, 0.1);
+}
+
+/* ─── Entry View ───────────────────────────────────────────── */
+.page-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.entry-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.entry-separator {
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+.entry-question {
+  margin-top: 16px;
+  font-weight: 700;
+}
+
+.entry-answer {
+  margin-bottom: 12px;
+}
+
+/* ─── Responsive: iPhone ───────────────────────────────────── */
+@media (max-width: 480px) {
+  .dos-desktop {
+    padding: 0;
+  }
+
+  .dos-container {
+    border-radius: 0;
+    max-height: 100%;
+    max-width: 100%;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .screen-header {
+    padding: 10px 16px;
+  }
+
+  .screen-body {
+    padding: 16px;
+  }
+
+  html, body {
+    font-size: 15px;
+  }
+
+  .prompt-text {
+    font-size: 18px;
+  }
+
+  .countdown {
+    font-size: 40px;
+  }
+}
+
+/* ─── Responsive: iPad ─────────────────────────────────────── */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .dos-desktop {
+    padding: 16px;
+  }
+
+  .dos-container {
+    max-height: 95%;
+    border-radius: 6px;
+  }
+}
+
+/* ─── Responsive: Desktop ──────────────────────────────────── */
+@media (min-width: 1025px) {
+  .dos-desktop {
+    padding: 40px;
+  }
+
+  .dos-container {
+    max-height: 85vh;
+    border-radius: 12px;
+    border: 3px solid #222;
+  }
+}
+
+/* ─── Screen flicker (subtle) ──────────────────────────────── */
+@keyframes flicker {
+  0% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.95; }
+  94% { opacity: 1; }
+  96% { opacity: 0.97; }
+  97% { opacity: 1; }
+}
+
+.dos-container {
+  animation: flicker 8s infinite;
+}

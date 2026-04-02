@@ -1,0 +1,17 @@
+{
+  "name": "Checkout Journal",
+  "short_name": "Checkout",
+  "description": "Evening reflection journal — 5 minutes of presence, joy, and letting go.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0000AA",
+  "theme_color": "#0000AA",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230000AA'/><text x='50' y='62' font-size='50' text-anchor='middle' fill='%23FFB000' font-family='monospace'>CJ</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
