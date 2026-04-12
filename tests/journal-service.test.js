@@ -87,6 +87,55 @@ describe('JournalService', () => {
     });
   });
 
+  describe('updateEntry', () => {
+    test('merges partial answers into existing entry', async () => {
+      const entry = new Entry('checkout-v1');
+      entry.setAnswer('presence', '7');
+      entry.setAnswer('joy', 'Original joy');
+      entry.setAnswer('values', 'Original values');
+      entry.setAnswer('letgo', 'Original letgo');
+      await service.createEntry(entry, new Date(2026, 3, 12));
+
+      // Update only one field
+      const result = await service.updateEntry('2026-04-12-checkout-v1', { joy: 'Updated joy' });
+      expect(result.id).toBe('2026-04-12-checkout-v1');
+
+      // Verify the updated field changed
+      const updated = await service.getEntry('2026-04-12-checkout-v1');
+      const joySection = updated.sections.find(s => s.title === 'Your joy-moment');
+      expect(joySection.content).toBe('Updated joy');
+
+      // Verify unchanged fields persisted
+      const presenceSection = updated.sections.find(s => s.title === 'How present do you feel right now?');
+      expect(presenceSection.content).toBe('7');
+      const valuesSection = updated.sections.find(s => s.title === 'Think of your values');
+      expect(valuesSection.content).toBe('Original values');
+      const letgoSection = updated.sections.find(s => s.title === 'What do you decide to let go of?');
+      expect(letgoSection.content).toBe('Original letgo');
+    });
+
+    test('updates multiple fields at once', async () => {
+      const entry = new Entry('checkout-v1');
+      entry.setAnswer('presence', '5');
+      entry.setAnswer('joy', 'Coffee');
+      entry.setAnswer('values', 'Curiosity');
+      entry.setAnswer('letgo', 'Fear');
+      await service.createEntry(entry, new Date(2026, 3, 13));
+
+      await service.updateEntry('2026-04-13-checkout-v1', {
+        presence: '9',
+        joy: 'Sunshine',
+        letgo: 'Regret'
+      });
+
+      const updated = await service.getEntry('2026-04-13-checkout-v1');
+      expect(updated.sections.find(s => s.title === 'How present do you feel right now?').content).toBe('9');
+      expect(updated.sections.find(s => s.title === 'Your joy-moment').content).toBe('Sunshine');
+      expect(updated.sections.find(s => s.title === 'Think of your values').content).toBe('Curiosity');
+      expect(updated.sections.find(s => s.title === 'What do you decide to let go of?').content).toBe('Regret');
+    });
+  });
+
   describe('loadTemplate', () => {
     test('loads checkout-v1 template', async () => {
       const template = await service.loadTemplate('checkout-v1');
