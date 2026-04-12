@@ -11,6 +11,7 @@
     "dev": "node bin/checkout.js",
     "serve": "node bin/checkout.js serve",
     "api": "node bin/api.js",
+    "api:multi": "node bin/api-server.js",
     "lint": "eslint lib/ bin/ || true"
   },
   "keywords": [
@@ -40,12 +41,15 @@
     "npm": ">=6.0.0"
   },
   "dependencies": {
+    "@clerk/express": "^2.1.0",
     "chalk": "^4.1.2",
     "commander": "^11.1.0",
     "ejs": "^5.0.1",
     "express": "^5.2.1",
     "express-session": "^1.19.0",
-    "inquirer": "^8.2.5"
+    "googleapis": "^171.4.0",
+    "inquirer": "^8.2.5",
+    "pg": "^8.20.0"
   },
   "devDependencies": {
     "eslint": "^8.55.0",
