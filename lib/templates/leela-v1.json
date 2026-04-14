@@ -1,0 +1,54 @@
+{
+  "id": "leela-v1",
+  "name": "Leela's Evening Journal",
+  "description": "A gentle end-of-day reflection before sleep",
+  "questions": [
+    {
+      "id": "feeling",
+      "order": 1,
+      "title": "How are you feeling right now?",
+      "prompt": "Rate your feeling from 1 to 5.\n1 = not great  ·  3 = okay  ·  5 = really good!",
+      "example": null,
+      "required": true,
+      "type": "number",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "id": "joy",
+      "order": 2,
+      "title": "Your moment of joy",
+      "prompt": "What was the best part of your day?",
+      "example": "e.g. playing with a friend, something funny that happened, a yummy snack",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "id": "thorn",
+      "order": 3,
+      "title": "Your thorn",
+      "prompt": "Did you have a moment of frustration?",
+      "example": "e.g. something felt unfair, something didn't go as planned, a hard moment",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "id": "tomorrow",
+      "order": 4,
+      "title": "Looking ahead",
+      "prompt": "Is there anything you're looking forward to tomorrow?",
+      "example": "e.g. an activity, seeing someone, trying something new",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "id": "letgo",
+      "order": 5,
+      "title": "Let it go",
+      "prompt": "Anything you want to let go of before you sleep?",
+      "example": "e.g. a worry, a bad feeling, something that bothered you",
+      "required": false,
+      "type": "text"
+    }
+  ]
+}
