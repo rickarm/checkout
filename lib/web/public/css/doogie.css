@@ -1,7 +1,56 @@
-/* ─── Doogie Howser Terminal Theme ─────────────────────────────
-   Inspired by the iconic blue DOS diary screen from Doogie Howser, M.D.
-   Blue background, monospace font, typewriter text, blinking cursor.
-   ──────────────────────────────────────────────────────────────── */
+/* ─── Theme Variables ───────────────────────────────────────
+   All colors, fonts, and effects are defined here as CSS
+   custom properties. Adding a new theme = one new block.
+   ──────────────────────────────────────────────────────────── */
+
+/* Default: Doogie Howser Terminal Theme */
+:root {
+  --bg-desktop:          #111;
+  --bg-screen:           #0000AA;
+  --color-text:          #FFFFFF;
+  --color-dim:           #AAAAAA;
+  --color-dim-more:      #777777;
+  --color-accent:        #FFB000;
+  --color-success:       #55FF55;
+  --color-error:         #FF5555;
+  --color-border:        rgba(255, 255, 255, 0.15);
+  --color-scrollbar:     rgba(255, 176, 0, 0.3);
+  --color-btn-border:    rgba(255, 176, 0, 0.5);
+  --color-btn-hover:     rgba(255, 176, 0, 0.1);
+  --color-link-hover:    rgba(255, 176, 0, 0.1);
+  --font-family:         'IBM Plex Mono', 'Courier New', monospace;
+  --radius-screen:       8px;
+  --screen-shadow:
+    0 0 60px rgba(0, 0, 170, 0.4),
+    0 0 120px rgba(0, 0, 170, 0.2),
+    inset 0 0 80px rgba(0, 0, 0, 0.15);
+  --scanlines-opacity:   1;
+  --flicker-animation:   flicker 8s infinite;
+}
+
+/* Leela: Soft Starlight Theme */
+[data-theme="leela"] {
+  --bg-desktop:          #1A1035;
+  --bg-screen:           #FAF5FF;
+  --color-text:          #2D1060;
+  --color-dim:           #7B6B9B;
+  --color-dim-more:      #9E90B8;
+  --color-accent:        #8B5CF6;
+  --color-success:       #34D399;
+  --color-error:         #F87171;
+  --color-border:        rgba(139, 92, 246, 0.2);
+  --color-scrollbar:     rgba(139, 92, 246, 0.3);
+  --color-btn-border:    rgba(139, 92, 246, 0.5);
+  --color-btn-hover:     rgba(139, 92, 246, 0.08);
+  --color-link-hover:    rgba(139, 92, 246, 0.08);
+  --font-family:         'Nunito', 'Helvetica Neue', sans-serif;
+  --radius-screen:       24px;
+  --screen-shadow:
+    0 0 40px rgba(139, 92, 246, 0.3),
+    0 0 80px rgba(139, 92, 246, 0.1);
+  --scanlines-opacity:   0;
+  --flicker-animation:   none;
+}
 
 /* ─── Reset & Base ─────────────────────────────────────────── */
 *, *::before, *::after {
@@ -13,11 +62,11 @@
 html, body {
   height: 100%;
   overflow: hidden;
-  background: #111;
-  font-family: 'IBM Plex Mono', 'Courier New', 'Courier', monospace;
+  background: var(--bg-desktop);
+  font-family: var(--font-family);
   font-size: 16px;
   line-height: 1.6;
-  color: #FFFFFF;
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
 }
@@ -33,26 +82,24 @@ html, body {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: #111;
+  background: var(--bg-desktop);
   padding: 20px;
 }
 
-/* ─── The DOS Screen ───────────────────────────────────────── */
+/* ─── The Screen Container ─────────────────────────────────── */
 .dos-container {
   position: relative;
   width: 100%;
   max-width: 720px;
   height: 100%;
   max-height: 900px;
-  background: #0000AA;
-  border-radius: 8px;
+  background: var(--bg-screen);
+  border-radius: var(--radius-screen);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow:
-    0 0 60px rgba(0, 0, 170, 0.4),
-    0 0 120px rgba(0, 0, 170, 0.2),
-    inset 0 0 80px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--screen-shadow);
+  animation: var(--flicker-animation);
 }
 
 /* ─── CRT Scanlines ────────────────────────────────────────── */
@@ -64,6 +111,7 @@ html, body {
   bottom: 0;
   pointer-events: none;
   z-index: 10;
+  opacity: var(--scanlines-opacity);
   background: repeating-linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.12) 0px,
@@ -79,13 +127,13 @@ html, body {
   justify-content: space-between;
   align-items: center;
   padding: 12px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid var(--color-border);
   flex-shrink: 0;
   z-index: 5;
 }
 
 .header-title {
-  color: #FFB000;
+  color: var(--color-accent);
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
@@ -98,7 +146,7 @@ html, body {
 }
 
 .nav-link {
-  color: #FFFFFF;
+  color: var(--color-text);
   text-decoration: none;
   font-size: 13px;
   opacity: 0.7;
@@ -111,8 +159,25 @@ html, body {
 }
 
 .nav-sep {
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--color-border);
   font-size: 13px;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: 13px;
+  opacity: 0.5;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.theme-toggle:hover {
+  opacity: 1;
 }
 
 /* ─── Screen Body ──────────────────────────────────────────── */
@@ -124,45 +189,44 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Scrollbar styling */
 .screen-body::-webkit-scrollbar {
   width: 6px;
 }
 
 .screen-body::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .screen-body::-webkit-scrollbar-thumb {
-  background: rgba(255, 176, 0, 0.3);
+  background: var(--color-scrollbar);
   border-radius: 3px;
 }
 
-/* ─── Colors ───────────────────────────────────────────────── */
+/* ─── Semantic Color Classes ───────────────────────────────── */
 .amber {
-  color: #FFB000;
+  color: var(--color-accent);
 }
 
 .dim {
-  color: #AAAAAA;
+  color: var(--color-dim);
 }
 
 .dim-more {
-  color: #777777;
+  color: var(--color-dim-more);
   font-style: italic;
 }
 
 .success {
-  color: #55FF55;
+  color: var(--color-success);
 }
 
 .error {
-  color: #FF5555;
+  color: var(--color-error);
 }
 
 /* ─── Blinking Cursor ──────────────────────────────────────── */
 .cursor {
-  color: #FFB000;
+  color: var(--color-accent);
   animation: blink 1s step-end infinite;
 }
 
@@ -208,7 +272,7 @@ html, body {
 .breath-circle {
   width: 60px;
   height: 60px;
-  border: 2px solid #FFB000;
+  border: 2px solid var(--color-accent);
   border-radius: 50%;
   transition: transform 4s ease-in-out;
 }
@@ -256,16 +320,16 @@ html, body {
 }
 
 .dot {
-  color: #555;
+  color: var(--color-dim-more);
   font-size: 12px;
 }
 
 .dot.completed {
-  color: #55FF55;
+  color: var(--color-success);
 }
 
 .dot.active {
-  color: #FFB000;
+  color: var(--color-accent);
 }
 
 .question-title p {
@@ -302,8 +366,8 @@ html, body {
   flex: 1;
   background: transparent;
   border: none;
-  color: #FFFFFF;
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  color: var(--color-text);
+  font-family: var(--font-family);
   font-size: 16px;
   line-height: 1.6;
   outline: none;
@@ -320,14 +384,14 @@ html, body {
   position: absolute;
   visibility: hidden;
   white-space: pre;
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: var(--font-family);
   font-size: 16px;
   line-height: 1.6;
   pointer-events: none;
 }
 
 .input-cursor {
-  color: #FFB000;
+  color: var(--color-accent);
   animation: blink 1s step-end infinite;
   position: absolute;
   pointer-events: none;
@@ -343,9 +407,9 @@ html, body {
 .terminal-btn {
   display: inline-block;
   background: transparent;
-  border: 1px solid rgba(255, 176, 0, 0.5);
-  color: #FFB000;
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  border: 1px solid var(--color-btn-border);
+  color: var(--color-accent);
+  font-family: var(--font-family);
   font-size: 14px;
   padding: 8px 16px;
   cursor: pointer;
@@ -354,23 +418,23 @@ html, body {
 }
 
 .terminal-btn:hover, .terminal-btn:focus {
-  background: rgba(255, 176, 0, 0.1);
-  border-color: #FFB000;
+  background: var(--color-btn-hover);
+  border-color: var(--color-accent);
   outline: none;
 }
 
 .terminal-btn.dim {
-  color: #AAAAAA;
-  border-color: rgba(170, 170, 170, 0.3);
+  color: var(--color-dim);
+  border-color: rgba(128, 128, 128, 0.3);
 }
 
 .terminal-btn.dim:hover {
-  background: rgba(170, 170, 170, 0.1);
-  border-color: #AAAAAA;
+  background: rgba(128, 128, 128, 0.1);
+  border-color: var(--color-dim);
 }
 
 .terminal-btn-inline {
-  color: #FFB000;
+  color: var(--color-accent);
   text-decoration: none;
   font-size: 14px;
 }
@@ -459,7 +523,7 @@ html, body {
 }
 
 .entry-link {
-  color: #FFFFFF;
+  color: var(--color-text);
   text-decoration: none;
   display: block;
   transition: background 0.15s;
@@ -468,7 +532,7 @@ html, body {
 }
 
 .entry-link:hover {
-  background: rgba(255, 176, 0, 0.1);
+  background: var(--color-link-hover);
 }
 
 /* ─── Entry View ───────────────────────────────────────────── */
@@ -482,6 +546,33 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
+}
+
+.entry-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.entry-nav-btn {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.entry-nav-btn:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.entry-nav-btn.disabled {
+  color: var(--color-dim-more);
+  pointer-events: none;
+  opacity: 0.3;
 }
 
 .entry-separator {
@@ -496,6 +587,49 @@ html, body {
 
 .entry-answer {
   margin-bottom: 12px;
+}
+
+/* ─── Landing Page ─────────────────────────────────────────── */
+.page-landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  gap: 32px;
+  text-align: center;
+}
+
+.landing-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.landing-users {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.user-btn {
+  display: block;
+  padding: 16px 24px;
+  border: 1px solid var(--color-btn-border);
+  color: var(--color-accent);
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+
+.user-btn:hover {
+  background: var(--color-btn-hover);
+  border-color: var(--color-accent);
 }
 
 /* ─── Responsive: iPhone ───────────────────────────────────── */
@@ -543,7 +677,6 @@ html, body {
 
   .dos-container {
     max-height: 95%;
-    border-radius: 6px;
   }
 }
 
@@ -555,21 +688,16 @@ html, body {
 
   .dos-container {
     max-height: 85vh;
-    border-radius: 12px;
-    border: 3px solid #222;
+    border: 3px solid rgba(0, 0, 0, 0.3);
   }
 }
 
-/* ─── Screen flicker (subtle) ──────────────────────────────── */
+/* ─── Screen flicker (Doogie theme only) ───────────────────── */
 @keyframes flicker {
-  0% { opacity: 1; }
+  0%  { opacity: 1; }
   92% { opacity: 1; }
   93% { opacity: 0.95; }
   94% { opacity: 1; }
   96% { opacity: 0.97; }
   97% { opacity: 1; }
-}
-
-.dos-container {
-  animation: flicker 8s infinite;
 }
