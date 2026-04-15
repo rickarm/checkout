@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@rickarm/checkout.svg)](https://www.npmjs.com/package/@rickarm/checkout)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/node/v/@rickarm/checkout)](https://nodejs.org)
-[![Tests](https://img.shields.io/badge/tests-26%20passing-brightgreen.svg)](https://github.com/rickarm/checkout)
+[![Tests](https://img.shields.io/badge/tests-55%20passing-brightgreen.svg)](https://github.com/rickarm/checkout)
 
 A lightweight CLI journaling app for 5-minute evening reflection. End your day with presence, gratitude, and intention.
 
@@ -29,7 +29,8 @@ Each session begins with a brief breathing exercise to help you transition into 
 - 📥 **Import** - Bring in existing markdown journal entries
 - ✅ **Validation** - Check entry integrity and format
 - ⚙️ **Configurable** - Customize journal directory location
-- 🧪 **Well-tested** - 26 passing tests, 6 test suites
+- 🌐 **Web interface** - Browser-based version via `checkout serve`
+- 🧪 **Well-tested** - 55 passing tests across unit, integration, and E2E suites
 
 ## Installation
 
@@ -185,6 +186,16 @@ Show current configuration.
 checkout config
 ```
 
+### `checkout serve`
+Start the browser-based web interface. Same guided reflection flow as the CLI, rendered in a terminal-styled UI.
+
+```bash
+checkout serve              # Default port 3000
+checkout serve -p 4000      # Custom port
+checkout serve --open       # Auto-open browser
+checkout web                # Alias for serve
+```
+
 ## File Format
 
 Entries are stored as markdown files with this structure:
@@ -331,15 +342,31 @@ Now your other project can read entries via `./journals/`.
 ### Run Tests
 
 ```bash
-npm test
+npm test           # Jest unit + integration tests (55 tests)
+npm run test:e2e   # Playwright E2E tests (22 tests, requires browser)
+npm run test:e2e:ui  # Playwright with interactive UI
 ```
 
-Test suites:
+**Jest test suites** (run with `npm test`):
 - Entry validation and markdown generation
 - Config management and path expansion
 - Storage operations and file handling
 - Import functionality (single/batch)
 - Validation checks and reporting
+- Web server routes and session handling (integration)
+
+**Playwright E2E tests** (run with `npm run test:e2e`):
+- Full entry flow: breathing → questions → review → save
+- Keyboard input focus after htmx swaps (guards against the input-not-working class of bug)
+- Form validation with error messaging
+- History browsing and navigation
+- Theme toggle behavior
+
+**First-time Playwright setup** (once per machine):
+```bash
+npm install
+npx playwright install chromium
+```
 
 ### Project Structure
 
@@ -359,9 +386,18 @@ checkout/
 │   ├── features/
 │   │   ├── importer.js      # Import functionality
 │   │   └── validator.js     # Validation logic
-│   └── templates/
-│       └── checkout-v1.json # Question template
-├── tests/                   # Test files
+│   ├── templates/
+│   │   └── checkout-v1.json # Question template
+│   └── web/
+│       ├── server.js        # Express web server
+│       ├── views/           # EJS templates
+│       └── public/          # Static assets (CSS, Alpine.js)
+├── tests/
+│   ├── *.test.js            # Jest unit + integration tests
+│   └── e2e/
+│       ├── checkout.spec.js # Playwright E2E tests
+│       └── start-test-server.js  # Test server for E2E
+├── playwright.config.js     # Playwright configuration
 ├── docs/                    # Documentation
 └── package.json
 ```

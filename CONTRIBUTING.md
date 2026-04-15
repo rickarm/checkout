@@ -32,10 +32,19 @@ Thank you for your interest in contributing to Checkout! This document provides 
 ### Running Tests
 
 ```bash
-npm test
+npm test             # Jest unit + integration tests (fast, no browser needed)
+npm run test:e2e     # Playwright E2E tests (requires browser setup below)
 ```
 
 All tests must pass before submitting a PR.
+
+**First-time Playwright setup** (once per machine):
+```bash
+npm install
+npx playwright install chromium
+```
+
+Playwright browser binaries are cached locally and not committed to the repo. The `npm run test:e2e` command automatically starts a test server on port 4321 using a temporary journal directory — no manual setup needed.
 
 ### Code Style
 
@@ -99,7 +108,7 @@ docs(readme): update installation instructions
 2. Make your changes
 3. Add/update tests as needed
 4. Update documentation if needed
-5. Run tests: `npm test`
+5. Run tests: `npm test && npm run test:e2e`
 6. Run linter: `npm run lint`
 7. Commit your changes
 8. Push to your fork
@@ -150,21 +159,29 @@ checkout/
 - Test both success and error cases
 - Use descriptive test names
 
-Example test structure:
+**Jest tests** live in `tests/*.test.js`. Use these for core logic, storage, and web server routes (via Supertest):
+
 ```javascript
 describe('Feature Name', () => {
-  test('does something correctly', () => {
-    // Arrange
-    const input = setupInput();
-
-    // Act
-    const result = doSomething(input);
-
-    // Assert
-    expect(result).toBe(expected);
+  test('does something correctly', async () => {
+    const res = await request(app).post('/route').send({ key: 'value' });
+    expect(res.status).toBe(200);
+    expect(res.text).toContain('expected output');
   });
 });
 ```
+
+**Playwright E2E tests** live in `tests/e2e/checkout.spec.js`. Use these for anything involving the browser — focus behavior, htmx swaps, Alpine.js interactions:
+
+```javascript
+test('input is focused after htmx swap', async ({ page }) => {
+  await page.goto('http://localhost:4321/u/rick');
+  // ... navigate to question
+  await expect(page.locator('.terminal-input').first()).toBeFocused();
+});
+```
+
+When adding web interface features, add both a Supertest route test (does it return the right HTML?) and a Playwright test (does the interaction work in the browser?).
 
 ## Documentation
 
