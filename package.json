@@ -8,6 +8,8 @@
   },
   "scripts": {
     "test": "jest --passWithNoTests",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "dev": "node bin/checkout.js",
     "serve": "node bin/checkout.js serve",
     "lint": "eslint lib/ bin/ || true"
@@ -46,8 +48,16 @@
     "express-session": "^1.19.0",
     "inquirer": "^8.2.5"
   },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/e2e/"
+    ]
+  },
   "devDependencies": {
+    "@playwright/test": "^1.44.0",
     "eslint": "^8.55.0",
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }
