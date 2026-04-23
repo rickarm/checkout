@@ -234,6 +234,16 @@ test.describe('Full entry flow', () => {
     await expect(page.locator('text=Entry saved.')).toBeVisible({ timeout: 8_000 });
   });
 
+  test('pressing Enter on the review page saves the entry', async ({ page }) => {
+    await completeFlow(page);
+    await page.waitForSelector('text=Here\'s your entry:', { timeout: 5_000 });
+    // Wait for the Save button to actually appear (it fades in ~1.2s after review renders).
+    await expect(page.locator('button:has-text("[Y] Save")')).toBeVisible({ timeout: 5_000 });
+    await page.keyboard.press('Enter');
+    await expect(page.locator('.step-saved')).toBeVisible({ timeout: 5_000 });
+    await expect(page.locator('text=Entry saved.')).toBeVisible({ timeout: 8_000 });
+  });
+
   test('[N] Discard returns to breathing without saving', async ({ page }) => {
     await completeFlow(page);
     await page.waitForSelector('text=Here\'s your entry:', { timeout: 5_000 });
