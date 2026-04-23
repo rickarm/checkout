@@ -42,11 +42,14 @@ lib/
     entry.js             # Entry creation and formatting
     storage.js           # File I/O, path resolution
   web/
+    auth.js              # Password auth (per-user passwords via config or env vars)
     server.js            # Express web server
     views/               # EJS templates
     public/              # Static assets (CSS, JS)
   templates/
     checkout-v1.json     # Question template
+  api/server.js          # Multi-user API server (Clerk auth, Google Drive)
+bin/api-server.js        # Multi-user API entry point
 ```
 
 ## Web Interface
@@ -63,6 +66,7 @@ Browser-based version of the same guided reflection flow. Uses HTMX for step-by-
 
 - Entries: `~/kb/journal/YYYY-MM-DD-checkout-v1.md`
 - Config: `~/.checkout/config.json`
+- Env vars: `~/.checkout/.env` (loaded by dotenv — passwords, API keys)
 - Index: `~/kb/journal/index.md` (auto-generated with wiki-style links)
 
 ## Testing
@@ -82,8 +86,15 @@ First-time Playwright setup per machine: `npm install && npx playwright install 
 
 ## Gotchas
 
+- Web auth: per-user passwords via `CHECKOUT_PASSWORD_<USERID>` in `~/.checkout/.env` or `password` field in config.json. Env vars take precedence.
 - File naming is strict: must match `YYYY-MM-DD-checkout-v1.md`
 - Config lives outside repo at `~/.checkout/`
 - No launchd integration — this is a manual CLI tool
+- Multi-user: config.users in `~/.checkout/config.json` defines per-user journalDirs, themes, templates
+- Web UI served over Tailscale at `http://100.67.99.101:3000` (Leela uses this from her iPad)
 - EJS 5 uses strict mode: all variables referenced in templates must be passed explicitly in `res.render()` or set in `res.locals`. Missing variables throw `ReferenceError` (not undefined).
 - Playwright browser binaries live in `~/Library/Caches/ms-playwright/` — not committed, must be installed per machine.
+- 3 test suites have pre-existing failures: `api.test.js`, `google-drive-adapter.test.js`, `user-service-middleware.test.js` (missing `googleapis` dep + API test drift)
+- Browser-level tests (jsdom): use `@jest-environment jsdom` docblock — `jest-environment-jsdom` is installed as devDep
+- Service worker caches JS/CSS with cache-first strategy (`CACHE_NAME = 'checkout-journal-v1'`) — bump cache name when updating static assets
+- Web UI keyboard shortcuts: global keydown handler in `terminal.js` maps keys to visible `[X]`-labelled buttons — new buttons with `[X] Label` text get shortcuts automatically

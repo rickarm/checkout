@@ -33,8 +33,17 @@
       "type": "text"
     },
     {
-      "id": "tomorrow",
+      "id": "values",
       "order": 4,
+      "title": "Living your values",
+      "prompt": "Your values are: courage, compassion, honesty, sportsmanship, and fun.\nThink of an action you did today that aligns with any of them.",
+      "example": "e.g. I was honest when it was hard, I showed compassion to a friend, I tried something that took courage",
+      "required": false,
+      "type": "text"
+    },
+    {
+      "id": "tomorrow",
+      "order": 5,
       "title": "Looking ahead",
       "prompt": "Is there anything you're looking forward to tomorrow?",
       "example": "e.g. an activity, seeing someone, trying something new",
@@ -43,7 +52,7 @@
     },
     {
       "id": "letgo",
-      "order": 5,
+      "order": 6,
       "title": "Let it go",
       "prompt": "Anything you want to let go of before you sleep?",
       "example": "e.g. a worry, a bad feeling, something that bothered you",
