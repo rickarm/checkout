@@ -91,7 +91,7 @@ First-time Playwright setup per machine: `npm install && npx playwright install 
 - Config lives outside repo at `~/.checkout/`
 - No launchd integration — this is a manual CLI tool
 - Multi-user: config.users in `~/.checkout/config.json` defines per-user journalDirs, themes, templates
-- Web UI served over Tailscale at `http://100.67.99.101:3000` (Leela uses this from her iPad)
+- Web UI served over Tailscale at `http://agent-mac-mini:3000` (Leela uses this from her iPad)
 - EJS 5 uses strict mode: all variables referenced in templates must be passed explicitly in `res.render()` or set in `res.locals`. Missing variables throw `ReferenceError` (not undefined).
 - Playwright browser binaries live in `~/Library/Caches/ms-playwright/` — not committed, must be installed per machine.
 - 3 test suites have pre-existing failures: `api.test.js`, `google-drive-adapter.test.js`, `user-service-middleware.test.js` (missing `googleapis` dep + API test drift)
