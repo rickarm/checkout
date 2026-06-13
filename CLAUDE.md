@@ -15,8 +15,8 @@ See `KB-Development-Workflow.md` in the Knowledge Base for the full workflow. Su
 ## Commands
 
 ```bash
-npm test              # Jest unit + integration tests (55 tests, 7 suites)
-npm run test:e2e      # Playwright E2E tests (22 tests) — requires: npx playwright install chromium
+npm test              # Jest unit + integration tests (15 suites under tests/)
+npm run test:e2e      # Playwright E2E tests — requires: npx playwright install chromium
 npm run test:e2e:ui   # Playwright interactive UI mode
 npm run dev           # Run CLI locally
 npm link              # Install globally as `checkout` command
@@ -34,23 +34,24 @@ checkout serve -p N   # Custom port
 ## Architecture
 
 ```
-bin/checkout.js          # CLI entry point (commander)
+bin/
+  checkout.js            # CLI entry point (commander)
+  api-server.js          # Multi-user API server entry point
 lib/
-  cli/commands.js        # Command handlers
-  core/
-    config.js            # Config management (~/.checkout/config.json)
-    entry.js             # Entry creation and formatting
-    storage.js           # File I/O, path resolution
-  web/
-    auth.js              # Password auth (per-user passwords via config or env vars)
-    server.js            # Express web server
-    views/               # EJS templates
-    public/              # Static assets (CSS, JS)
-  templates/
-    checkout-v1.json     # Question template
-  api/server.js          # Multi-user API server (Clerk auth, Google Drive)
-bin/api-server.js        # Multi-user API entry point
+  cli/                   # Command handlers, display, prompts
+  core/                  # config (~/.checkout/config.json), entry model
+  domain/                # markdown rendering (markdown.js)
+  features/              # importer, indexer, validator
+  services/              # config-service, journal-service (business logic layer)
+  storage/               # storage-adapter.js + adapters/ (local-filesystem, google-drive)
+  auth/                  # Clerk auth, Google Drive OAuth, token-store (multi-user API)
+  api/                   # Express REST API: server.js, routes/, middleware/, serializers.js
+  web/                   # self-hosted web UI: server.js (Express), auth.js (password), EJS views/, static public/
+  utils/                 # date helpers
+  templates/             # question definitions (checkout-v1.json)
 ```
+
+Two distinct auth layers: `web/auth.js` is simple per-user password auth for the self-hosted single-tenant web UI; `auth/` (Clerk + Google Drive OAuth + token-store) is for the multi-user `api/` server.
 
 ## Web Interface
 
