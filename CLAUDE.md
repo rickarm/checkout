@@ -15,7 +15,7 @@ See `KB-Development-Workflow.md` in the Knowledge Base for the full workflow. Su
 ## Commands
 
 ```bash
-npm test              # Jest unit + integration tests (15 suites under tests/)
+npm test              # Jest unit + integration tests (tests/, excluding tests/e2e/)
 npm run test:e2e      # Playwright E2E tests — requires: npx playwright install chromium
 npm run test:e2e:ui   # Playwright interactive UI mode
 npm run dev           # Run CLI locally
